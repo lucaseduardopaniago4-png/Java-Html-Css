@@ -2,16 +2,16 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de aluno</title>
+    <title>Cadastro de professor</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <main class="container">
-        <h1>Cadastro de aluno</h1>
+        <h1>Cadastro de professor</h1>
 
-        <a th:href="@{/alunos}" class="link-voltar">Voltar para a lista</a>
+        <a th:href="@{/professores}" class="link-voltar">Voltar para a lista</a>
 
-        <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+        <form th:action="@{/professores/salvar}" th:object="${professor}" method="post">
 
             <input type="hidden" th:field="*{id}">
 
@@ -27,20 +27,26 @@
                    th:classappend="${#fields.hasErrors('nome')} ? 'campo-erro'">
             <span class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 
-            <label>Curso:</label>
-            <input type="text" th:field="*{curso}"
-                   th:classappend="${#fields.hasErrors('curso')} ? 'campo-erro'">
-            <span class="erro" th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}"></span>
-
             <label>E-mail:</label>
             <input type="email" th:field="*{email}"
                    th:classappend="${#fields.hasErrors('email')} ? 'campo-erro'">
             <span class="erro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 
-            <label>Idade:</label>
-            <input type="number" th:field="*{idade}"
-                   th:classappend="${#fields.hasErrors('idade')} ? 'campo-erro'">
-            <span class="erro" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+            <label>Disciplina:</label>
+            <input type="text" th:field="*{disciplina}"
+                   th:classappend="${#fields.hasErrors('disciplina')} ? 'campo-erro'">
+            <span class="erro" th:if="${#fields.hasErrors('disciplina')}" th:errors="*{disciplina}"></span>
+
+            <label>Titulação:</label>
+            <select th:field="*{titulacao}"
+                    th:classappend="${#fields.hasErrors('titulacao')} ? 'campo-erro'">
+                <option value="">Selecione...</option>
+                <option value="Especialista">Especialista</option>
+                <option value="Mestre">Mestre</option>
+                <option value="Doutor">Doutor</option>
+                <option value="Pós-Doutor">Pós-Doutor</option>
+            </select>
+            <span class="erro" th:if="${#fields.hasErrors('titulacao')}" th:errors="*{titulacao}"></span>
 
             <button type="submit">Cadastrar</button>
         </form>

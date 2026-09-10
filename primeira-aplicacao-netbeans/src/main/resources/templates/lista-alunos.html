@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de alunos</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+<body>
+<main class="container">
+
+    <nav class="tabs">
+        <a th:href="@{/alunos}" class="ativo">Alunos</a>
+        <a th:href="@{/professores}">Professores</a>
+    </nav>
+
+    <h1>Alunos cadastrados</h1>
+
+    <a th:href="@{/alunos/novo}">
+        Novo aluno
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>E-mail</th>
+                <th>Idade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="aluno : ${alunos}">
+                <td th:text="${aluno.id}"></td>
+                <td th:text="${aluno.nome}"></td>
+                <td th:text="${aluno.curso}"></td>
+                <td th:text="${aluno.email}"></td>
+                <td th:text="${aluno.idade}"></td>
+                <td>
+                    <a th:href="@{/alunos/editar/{id}(id=${aluno.id})}">
+                        Editar
+                    </a>
+
+                    <a href="javascript:void(0)" class="btn-excluir"
+                       th:attr="data-url=@{/alunos/excluir/{id}(id=${aluno.id})}">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="modal-excluir" class="modal-fundo">
+        <div class="modal-caixa">
+            <h3>Excluir aluno</h3>
+            <p>Tem certeza que deseja excluir este aluno? Essa ação não pode ser desfeita.</p>
+            <div class="modal-acoes">
+                <button type="button" class="btn-cancelar" onclick="fecharModalExclusao()">Cancelar</button>
+                <button type="button" class="btn-confirmar-exclusao" onclick="confirmarExclusao()">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script th:inline="none">
+    const modalExcluir = document.getElementById('modal-excluir');
+
+    document.querySelectorAll('.btn-excluir').forEach(function (link) {
+        link.addEventListener('click', function () {
+            modalExcluir.dataset.url = link.dataset.url;
+            modalExcluir.classList.add('aberto');
+        });
+    });
+
+    function fecharModalExclusao() {
+        modalExcluir.classList.remove('aberto');
+    }
+
+    function confirmarExclusao() {
+        window.location.href = modalExcluir.dataset.url;
+    }
+</script>
+</body>
+</html>

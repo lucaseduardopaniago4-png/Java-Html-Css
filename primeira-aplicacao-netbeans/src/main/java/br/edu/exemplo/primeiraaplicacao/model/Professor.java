@@ -5,14 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Aluno {
+public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,17 +19,15 @@ public class Aluno {
     @Size(min = 3, max = 100, message = "O nome deve possuir entre 3 e 100 caracteres")
     private String nome;
 
-    @NotBlank(message = "O curso é obrigatório")
-    private String curso;
-
     @NotBlank(message = "O e-mail é obrigatório")
     @Email(message = "Informe um e-mail válido")
     private String email;
 
-    @NotNull(message = "A idade é obrigatória")
-    @Min(value = 16, message = "A idade mínima é 16 anos")
-    @Max(value = 120, message = "A idade máxima é 120 anos")
-    private Integer idade;
+    @NotBlank(message = "A disciplina é obrigatória")
+    private String disciplina;
+
+    @NotBlank(message = "A titulação é obrigatória")
+    private String titulacao;
 
     public Long getId() {
         return id;
@@ -50,14 +45,6 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -66,11 +53,19 @@ public class Aluno {
         this.email = email;
     }
 
-    public Integer getIdade() {
-        return idade;
+    public String getDisciplina() {
+        return disciplina;
     }
 
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public String getTitulacao() {
+        return titulacao;
+    }
+
+    public void setTitulacao(String titulacao) {
+        this.titulacao = titulacao;
     }
 }

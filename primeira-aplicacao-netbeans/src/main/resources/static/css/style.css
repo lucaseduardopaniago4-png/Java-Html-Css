@@ -1,19 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
-    --azul-900: #1e3a8a;
-    --azul-700: #1d4ed8;
-    --azul-600: #2563eb;
-    --azul-500: #3b82f6;
-    --azul-100: #dbeafe;
-    --azul-50: #eff6ff;
+    /* marca: teal/ciano escuro */
+    --brand: #008b8b;
+    --brand-bright: #00b3b3;
+    --brand-text: #5eead4;
+    --brand-soft: rgba(0, 139, 139, 0.16);
+    --brand-border: rgba(0, 139, 139, 0.5);
 
-    --cinza-900: #1f2937;
-    --cinza-600: #4b5563;
-    --cinza-300: #d1d5db;
-    --cinza-100: #f1f5f9;
+    /* estado */
+    --danger: #f87171;
+    --danger-strong: #fca5a5;
+    --danger-bg: rgba(248, 113, 113, 0.12);
+    --danger-border: rgba(248, 113, 113, 0.4);
 
-    --branco: #ffffff;
-    --sombra: 0 4px 14px rgba(29, 78, 216, 0.12);
-    --raio: 10px;
+    /* superficies (tema escuro) */
+    --bg: #0a0f12;
+    --surface: #131a1f;
+    --surface-2: #1b242b;
+    --border: #263038;
+    --border-soft: #1c252c;
+
+    --text: #e8eef1;
+    --text-secondary: #9db0b8;
+    --text-muted: #64767e;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 14px 30px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.35);
+    --shadow-brand: 0 10px 26px rgba(0, 139, 139, 0.35), 0 2px 8px rgba(0, 139, 139, 0.25);
+    --shadow-brand-lg: 0 18px 40px rgba(0, 139, 139, 0.45), 0 4px 12px rgba(0, 139, 139, 0.3);
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-pill: 999px;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -21,118 +42,540 @@
 }
 
 body {
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
-    padding: 48px 24px;
+    padding: 56px 24px;
     min-height: 100vh;
-    background: linear-gradient(180deg, var(--azul-50) 0%, var(--cinza-100) 100%);
-    color: var(--cinza-900);
-    line-height: 1.5;
+    background:
+        radial-gradient(760px 460px at 8% -10%, rgba(0, 139, 139, 0.16), transparent 60%),
+        radial-gradient(680px 420px at 108% 4%, rgba(0, 139, 139, 0.10), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 640px;
+    max-width: 760px;
     margin: 0 auto;
 }
 
+@media (max-width: 640px) {
+    .container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 640px;
+    }
+}
+
+/* navegacao entre modulos (Alunos / Professores) */
+nav.tabs {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 24px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+}
+
+nav.tabs a {
+    padding: 7px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: background 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+nav.tabs a:hover {
+    color: var(--brand-text);
+}
+
+nav.tabs a.ativo {
+    background: var(--brand);
+    color: #ffffff;
+    box-shadow: var(--shadow-brand);
+}
+
 h1 {
-    margin: 0 0 8px;
-    padding-bottom: 12px;
-    color: var(--azul-900);
-    font-size: 28px;
-    border-bottom: 3px solid var(--azul-600);
+    margin: 0 0 20px;
+    padding-bottom: 18px;
+    color: var(--text);
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 56px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-bright));
+    border-radius: 2px;
 }
 
 h2 {
-    color: var(--azul-700);
-    font-size: 20px;
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 p {
-    font-size: 17px;
-    color: var(--cinza-600);
+    font-size: 15px;
+    color: var(--text-secondary);
 }
 
 a {
-    color: var(--azul-600);
+    color: var(--brand-text);
     text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s var(--ease);
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--brand-bright);
 }
 
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--brand-bright);
+    outline-offset: 2px;
+}
+
+/* link de acao de topo (ex: "Novo aluno") vira um botao com preenchimento no hover */
+main.container > p > a,
+main.container > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    color: var(--brand-text);
+    font-size: 14px;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease),
+                box-shadow 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+main.container > p > a::after,
+main.container > a::after {
+    content: "\2192";
+    transition: transform 0.2s var(--ease);
+}
+
+main.container > p > a:hover,
+main.container > a:hover {
+    background: linear-gradient(135deg, var(--brand), var(--brand-bright));
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: var(--shadow-brand);
+    transform: translateY(-2px);
+}
+
+main.container > p > a:hover::after,
+main.container > a:hover::after {
+    transform: translateX(3px);
+}
+
+main.container > p > a:active,
+main.container > a:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* variante "voltar" (formularios de cadastro/edicao) - mesma base, seta invertida */
+main.container > a.link-voltar {
+    flex-direction: row-reverse;
+}
+
+main.container > a.link-voltar::after {
+    content: "\2190";
+}
+
+main.container > a.link-voltar:hover::after {
+    transform: translateX(-3px);
+}
+
+/* cards de conteudo (resultado, disciplina) */
 .box {
-    background: var(--branco);
-    border: 1px solid var(--cinza-300);
-    border-left: 4px solid var(--azul-600);
-    border-radius: var(--raio);
-    box-shadow: var(--sombra);
-    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--brand);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 22px 26px;
     margin-top: 16px;
+    transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.box:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
 .box p {
-    margin: 10px 0;
+    margin: 0 0 14px;
+    font-size: 15px;
+}
+
+.box p:last-child {
+    margin-bottom: 0;
 }
 
 .box strong {
-    color: var(--azul-900);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
+.box span {
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* badge (ex: titulacao do professor) */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--brand-soft);
+    color: var(--brand-text);
+    border: 1px solid var(--brand-border);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* formulario */
 form {
-    background: var(--branco);
-    border: 1px solid var(--cinza-300);
-    border-radius: var(--raio);
-    box-shadow: var(--sombra);
-    padding: 24px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 30px;
     margin-top: 16px;
 }
 
 form label {
     display: block;
-    margin-top: 16px;
-    margin-bottom: 4px;
-    font-weight: 600;
-    color: var(--azul-900);
-    font-size: 14px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-form input {
+form label:first-child {
+    margin-top: 0;
+}
+
+form input,
+form select {
     width: 100%;
-    padding: 10px 12px;
+    padding: 11px 14px;
     font-size: 15px;
     font-family: inherit;
-    border: 1px solid var(--cinza-300);
-    border-radius: 6px;
-    background: var(--cinza-100);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
 }
 
-form input:focus {
+form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239db0b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+}
+
+form input::placeholder {
+    color: var(--text-muted);
+}
+
+form input:hover,
+form select:hover {
+    border-color: var(--brand-border);
+}
+
+form input:focus,
+form select:focus {
     outline: none;
-    border-color: var(--azul-500);
-    background: var(--branco);
-    box-shadow: 0 0 0 3px var(--azul-100);
+    border-color: var(--brand-bright);
+    background-color: var(--surface);
+    box-shadow: 0 0 0 4px var(--brand-soft);
+}
+
+/* remove as setinhas nativas do input number (ex: campo Idade) */
+form input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+form input[type="number"]::-webkit-inner-spin-button,
+form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 form button {
-    margin-top: 24px;
-    padding: 12px 20px;
+    margin-top: 28px;
+    width: 100%;
+    padding: 14px 20px;
     font-size: 15px;
-    font-weight: 600;
-    background: var(--azul-700);
-    color: var(--branco);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--brand), var(--brand-bright));
+    color: #ffffff;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.05s ease;
+    box-shadow: var(--shadow-brand);
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), filter 0.2s var(--ease);
 }
 
 form button:hover {
-    background: var(--azul-900);
+    filter: brightness(1.12);
+    box-shadow: var(--shadow-brand-lg);
+    transform: translateY(-2px);
 }
 
 form button:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+    filter: brightness(1);
+    box-shadow: var(--shadow-sm);
+}
+
+/* validacao */
+.erro {
+    display: block;
+    color: var(--danger);
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.campo-erro {
+    border-color: var(--danger) !important;
+    background: var(--danger-bg) !important;
+}
+
+.resumo-erros {
+    background: var(--danger-bg);
+    border: 1px solid var(--danger-border);
+    border-left: 4px solid var(--danger);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.resumo-erros h3 {
+    margin: 0 0 8px;
+    color: var(--danger-strong);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.resumo-erros ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--danger-strong);
+    font-size: 14px;
+}
+
+/* tabela de listagem */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-top: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+th, td {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+thead th {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    color: var(--text-secondary);
+}
+
+tbody tr {
+    transition: background 0.15s var(--ease);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: var(--brand-soft);
+}
+
+td a {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--brand-border);
+    color: var(--brand-text);
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease),
+                box-shadow 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+td a:hover {
+    background: linear-gradient(135deg, var(--brand), var(--brand-bright));
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: var(--shadow-brand);
+    transform: translateY(-1px);
+}
+
+td a:last-child {
+    margin-right: 0;
+    border-color: var(--danger-border);
+    color: var(--danger);
+}
+
+td a:last-child:hover {
+    background: var(--danger);
+    color: #1a0000;
+    box-shadow: 0 10px 24px rgba(248, 113, 113, 0.3), 0 2px 6px rgba(248, 113, 113, 0.2);
+}
+
+/* modal de confirmacao (ex: excluir aluno/professor) */
+.modal-fundo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+}
+
+.modal-fundo.aberto {
+    display: flex;
+}
+
+.modal-caixa {
+    width: 100%;
+    max-width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--danger);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 24px 26px;
+    animation: modal-entrada 0.18s var(--ease);
+}
+
+@keyframes modal-entrada {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-caixa h3 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.modal-caixa p {
+    margin: 0 0 22px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-acoes button {
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: background 0.2s var(--ease), color 0.2s var(--ease),
+                box-shadow 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+.modal-acoes .btn-cancelar {
+    background: var(--surface-2);
+    color: var(--text-secondary);
+}
+
+.modal-acoes .btn-cancelar:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.modal-acoes .btn-confirmar-exclusao {
+    background: var(--danger);
+    color: #1a0000;
+    border-color: transparent;
+}
+
+.modal-acoes .btn-confirmar-exclusao:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 24px rgba(248, 113, 113, 0.3);
+    transform: translateY(-1px);
 }
