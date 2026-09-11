@@ -18,9 +18,11 @@ Aplicação web full-stack em **Spring Boot** para gestão de alunos e professor
 
 > ⚠️ Screenshots de uma versão anterior do layout (tema claro, antes do módulo de Professor). Serão atualizadas em breve.
 
-<img width="719" height="581" alt="Screenshot_1" src="https://github.com/user-attachments/assets/d42d4eab-571a-4337-909a-69ddb2a2ffe7" />
-<img width="729" height="592" alt="Screenshot_2" src="https://github.com/user-attachments/assets/c96200d1-6139-4ab7-b0a8-c4c7ed5c9a1c" />
-<img width="718" height="330" alt="Screenshot_3" src="https://github.com/user-attachments/assets/f65230b7-e0df-4fbe-865c-ced894b3a906" />
+<img width="874" height="535" alt="Professores" src="https://github.com/user-attachments/assets/6cea0566-2ca3-45da-ab5c-a4d4fc64e6ff" />
+<img width="928" height="484" alt="Aluno" src="https://github.com/user-attachments/assets/829da565-f5b6-48cd-828e-f438e48d5cd8" />
+<img width="851" height="677" alt="NovoProfessor" src="https://github.com/user-attachments/assets/de807d5f-26c6-4f7e-911a-6e9820de072e" />
+<img width="854" height="685" alt="NovoAluno" src="https://github.com/user-attachments/assets/bffeed1a-3dc6-4978-bc0c-cc61bbb6169b" />
+
 
 ## ✨ Funcionalidades
 
