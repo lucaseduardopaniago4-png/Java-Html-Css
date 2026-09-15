@@ -16,7 +16,7 @@ Aplicação web full-stack em **Spring Boot** para gestão de alunos e professor
 
 ## 📸 Capturas de tela
 
-> ⚠️ Screenshots de uma versão anterior do layout (tema claro, antes do módulo de Professor). Serão atualizadas em breve.
+> ⚠️ Screenshots do layout atual Dark-theme
 
 <img width="874" height="535" alt="Professores" src="https://github.com/user-attachments/assets/6cea0566-2ca3-45da-ab5c-a4d4fc64e6ff" />
 <img width="928" height="484" alt="Aluno" src="https://github.com/user-attachments/assets/829da565-f5b6-48cd-828e-f438e48d5cd8" />
